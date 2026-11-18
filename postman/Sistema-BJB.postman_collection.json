@@ -1,0 +1,99 @@
+{
+  "info": {
+    "_postman_id": "bjb-api-collection-2026",
+    "name": "Sistema BJB - API",
+    "description": "Coleção de testes da API inicial do Sistema BJB. Execute o backend em http://localhost:3000 antes de enviar as requisições.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Verificar API",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            ""
+          ]
+        },
+        "description": "Verifica se o servidor do Sistema BJB está ativo."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status HTTP 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Mensagem de sucesso da API', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.mensagem).to.eql('API do Sistema BJB funcionando!');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Listar produtos (GET)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/produtos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "produtos"
+          ]
+        },
+        "description": "Lista os produtos de exemplo cadastrados na API."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status HTTP 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Resposta é uma lista', function () {",
+              "    pm.expect(pm.response.json()).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Produtos possuem os campos esperados', function () {",
+              "    const produtos = pm.response.json();",
+              "    if (produtos.length > 0) {",
+              "        pm.expect(produtos[0]).to.have.all.keys('id', 'nome', 'modelo', 'quantidade');",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
