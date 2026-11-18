@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema BJB | Indústria de Bonés</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">BJB<span>.</span></div>
+    <span class="status"><i></i> Sistema de gestão</span>
+  </header>
+
+  <main class="container">
+    <section class="boas-vindas">
+      <p class="etiqueta">INDÚSTRIAS BJB</p>
+      <h1>Gestão simples.<br><span>Produção organizada.</span></h1>
+      <p class="descricao">Painel inicial para acompanhar os produtos da indústria.</p>
+    </section>
+
+    <section class="painel">
+      <div class="painel-cabecalho">
+        <div>
+          <p class="etiqueta">ESTOQUE</p>
+          <h2>Produtos cadastrados</h2>
+        </div>
+        <button id="atualizar">Atualizar</button>
+      </div>
+      <p id="mensagem" class="mensagem">Carregando produtos...</p>
+      <div id="produtos" class="produtos"></div>
+    </section>
+    <footer>© 2026 Indústrias BJB · Sistema de Gestão</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
